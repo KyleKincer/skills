@@ -44,7 +44,7 @@ Form objects: `https://developer.4d.com/docs/FormObjects/<slug>`
 | Web area | `webArea` | `webAreaOverview` |
 | 4D Write Pro area | `write` | `writeProAreaOverview` |
 
-Check the `type` value against `schemas/4dform/formsSchema.json` before
+Check the `type` value against `skills/4dform/schemas/formsSchema.json` before
 writing it; the schema is authoritative for JSON names.
 
 Property groups: `https://developer.4d.com/docs/FormObjects/<slug>`

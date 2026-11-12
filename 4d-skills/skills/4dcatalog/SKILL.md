@@ -48,7 +48,7 @@ When instructed to create a new database schema:
 **Always** validate with this exact command:
 
 ```sh
-tools/4dcatalog/xmllint --noout --nonet --dtdvalid schemas/4dcatalog/base.dtd <file>
+tools/4dcatalog/xmllint --noout --nonet --dtdvalid skills/4dcatalog/schemas/base.dtd <file>
 ```
 
 Prefer `tools/4dcatalog/xmllint` (or `tools\4dcatalog\xmllint.exe` on Windows) over any
@@ -92,11 +92,16 @@ grep -oE '<(base|table|field|index|relation) [^>]*uuid="[^"]*"' Project/Sources/
 
 ## Schema
 
-The 4D Catalog DTD is:
+The 4D Catalog DTD ships inside this skill, in the `schemas/` folder next
+to this `SKILL.md` (`base.dtd`, which includes `base_core.dtd` and
+`common.dtd`). From the skillset root the core definitions are:
 
 ```
-schemas/4dcatalog/base_core.dtd
+skills/4dcatalog/schemas/base_core.dtd
 ```
+
+If the skill is installed on its own (not as part of the whole skillset),
+use the copies in this skill's folder.
 
 Use this DTD when validating a `.4DCatalog` file.
 
@@ -111,7 +116,7 @@ Do not modify the DTD to make an invalid Catalog pass validation.
 
 The DOCTYPE SYSTEM identifier is a conventional 4D reference. The URL does
 not resolve over HTTP. The actual DTD is the local file
-`schemas/4dcatalog/base.dtd`. Always keep the DOCTYPE declaration
+`skills/4dcatalog/schemas/base.dtd`. Always keep the DOCTYPE declaration
 exactly as shown -- do not change the SYSTEM identifier to a local path.
 Validation uses `--dtdvalid` with the local DTD and `--nonet` to suppress
 network access.

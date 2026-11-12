@@ -5,8 +5,8 @@
 The skillset lives in [`4d-skills/`](4d-skills): a root
 [`AGENTS.md`](4d-skills/AGENTS.md) that routes tasks to skills, one folder
 per skill under [`4d-skills/skills/`](4d-skills/skills) (each with a
-`SKILL.md`), and the validation schemas under
-[`4d-skills/schemas/`](4d-skills/schemas). Every topic has exactly one
+`SKILL.md`, plus any schemas, references, scripts or assets it uses, so
+every skill folder is self-contained). Every topic has exactly one
 owning skill; the others link to it.
 
 ## Skills
@@ -56,7 +56,7 @@ Used only in repositories created from
 
 The [`dist`](https://github.com/miyako/skills/tree/dist) branch contains
 only the skillset: the content of `4d-skills/` at its root (`AGENTS.md`,
-`skills/`, `schemas/`, `MIGRATION.json`) plus this README and `VERSION`.
+`skills/`, `MIGRATION.json`) plus this README and `VERSION`.
 It is published automatically from `main` by
 [`publish-dist.yml`](https://github.com/miyako/skills/blob/main/.github/workflows/publish-dist.yml).
 Add it as a submodule at `.agents`:
@@ -79,7 +79,8 @@ Once mounted:
 
 * skills live at `.agents/skills/<name>/SKILL.md`, where agent hosts that
   scan `.agents/skills/` discover them;
-* schemas live at `.agents/schemas/`;
+* each skill's schemas live in its own folder, e.g.
+  `.agents/skills/4dform/schemas/`;
 * `.agents/AGENTS.md` holds the skill-selection table. Point to it from the
   repository's own root `AGENTS.md` (e.g. "For 4D work, read
   `.agents/AGENTS.md` and the skills under `.agents/skills/`"), since a

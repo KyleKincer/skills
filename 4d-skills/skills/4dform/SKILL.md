@@ -230,7 +230,7 @@ A form task is complete when all three hold. Report each explicitly.
 1. **Schema validation passes** for every `.4DForm` written or modified:
 
    ```sh
-   tools/4dform/boon schemas/4dform/formsSchema.json <form.4DForm>
+   tools/4dform/boon skills/4dform/schemas/formsSchema.json <form.4DForm>
    ```
 
 2. **`.4dm` validation reports no errors** for every form method and
@@ -274,11 +274,15 @@ permissiveness here is intentional.
 
 ## Schema
 
-The 4D Form schema is:
+The 4D Form schema ships inside this skill, as `formsSchema.json` in the
+`schemas/` folder next to this `SKILL.md`. From the skillset root it is:
 
 ```
-schemas/4dform/formsSchema.json
+skills/4dform/schemas/formsSchema.json
 ```
+
+If the skill is installed on its own (not as part of the whole skillset),
+use the copy in this skill's folder.
 
 Use this schema when validating a `.4DForm` file.
 
@@ -293,7 +297,7 @@ When validating a `.4DForm`:
 2. Validate the file against:
 
    ```
-   schemas/4dform/formsSchema.json
+   skills/4dform/schemas/formsSchema.json
    ```
 
 3. Report any validation errors with their location and relevant property
@@ -306,7 +310,7 @@ Use `boon` for JSON Schema validation, via its provisioned path (see Tool
 Dependencies below):
 
 ```
-tools/4dform/boon schemas/4dform/formsSchema.json <file>
+tools/4dform/boon skills/4dform/schemas/formsSchema.json <file>
 ```
 
 Do not assume that `jq` alone performs JSON Schema validation.
@@ -370,7 +374,7 @@ Use `tools/4dform/boon` (or `tools\4dform\boon.exe` on Windows) in all validatio
 commands -- do not use a bare `boon`:
 
 ```
-tools/4dform/boon schemas/4dform/formsSchema.json <file>
+tools/4dform/boon skills/4dform/schemas/formsSchema.json <file>
 ```
 
 Do not duplicate tool installation logic in this skill.

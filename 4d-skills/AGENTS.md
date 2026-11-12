@@ -10,7 +10,7 @@ workflows for working with 4D source projects and their associated files.
 When working on a 4D project, prefer the most specific 4D skill available
 rather than treating a 4D artifact as a generic JSON or XML document.
 
-All paths in this file and in the skills (`skills/...`, `schemas/...`) are
+All paths in this file and in the skills (`skills/...`) are
 relative to the folder that contains this `AGENTS.md` -- the skillset root.
 In a consumer repository the skillset is usually mounted as a git submodule
 at `.agents/`, so `skills/4dform/SKILL.md` is
@@ -136,11 +136,12 @@ also states how many of its files a task may open.
 is separate from `4dtools`, which provisions this skillset's own helper
 binaries and does not provision 4D.
 
-Schemas referenced by skills are in the `schemas/` directory relative to
-this file:
+Each schema lives inside the skill that uses it, in a `schemas/` folder
+next to its `SKILL.md`, so a skill installed on its own (without the rest
+of the skillset) still has its validation inputs:
 
-- `schemas/4dcatalog/base.dtd` -- 4D Catalog DTD
-- `schemas/4dform/formsSchema.json` -- 4D Form JSON Schema
+- `skills/4dcatalog/schemas/base.dtd` -- 4D Catalog DTD
+- `skills/4dform/schemas/formsSchema.json` -- 4D Form JSON Schema
 
 A skill may also ship 4D source templates in an `assets/` subdirectory
 next to its `SKILL.md`. These are distinct from `tools/` (executables
@@ -337,7 +338,9 @@ Do not conceal a 4D validation failure behind a generic parser error.
 
 Keep artifact-specific knowledge in the corresponding skill.
 
-Keep machine-readable schemas in `schemas/`.
+Keep machine-readable schemas inside the owning skill, under
+`skills/<name>/schemas/`, never at the skillset root: agent hosts that
+install skills one folder at a time only copy the skill's own folder.
 
 Keep small helper scripts that run in place inside the owning skill
 (`skills/<name>/scripts/`); executables provisioned by `4dtools` go to the
